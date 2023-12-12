@@ -6,7 +6,7 @@ def getBuildContext(Map config, String architecture) {
 }
 
 def buildAndPush() {
-    docker.withServer("tcp://${DOCKER_SERVER}:2376", 'docker-client') {
+    docker.withServer("tcp://${DOCKER_SERVER}:2375", 'docker-client') {
         def image = docker.build("${REPO_NAME}:${TAG}", "--pull -f ${BUILD_CONTEXT}/${DOCKERFILE} ${BUILD_CONTEXT}")
 
         
