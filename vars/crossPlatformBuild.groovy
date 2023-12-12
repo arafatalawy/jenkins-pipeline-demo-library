@@ -8,8 +8,7 @@ def getBuildContext(Map config, String architecture) {
 def buildAndPush() {
     docker.withServer("tcp://${DOCKER_SERVER}:2376", 'docker-client') {
         def image = docker.build("${REPO_NAME}:${TAG}", "--pull -f ${BUILD_CONTEXT}/${DOCKERFILE} ${BUILD_CONTEXT}")
-        withDockerRegistry([credentialsId: "docker-hub", url: "" ]) {        
-            image.push()
+
         }
     }
 }
@@ -56,7 +55,7 @@ def call(Map config) {
             }
             stage('notify') {
                 steps{
-                    echo "https://hub.docker.com/r/$REPO_NAME"
+                    echo "https://hub.docker.com/r"
                 }
             }
         }
